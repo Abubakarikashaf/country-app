@@ -1,40 +1,27 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import AboutScreen from './screens/AboutScreen';
+import productscreem from './screens/productscreem';
+import ContactScreen from './screens/ContactScreen';
+import Header from './components/Header';
+
+
 import React from 'react'
-import ProfileCard from './components/ProfileCard'
-import ProfileForm  from './components/ProfileForm'
 
 function App() {
-
-  const [allprofiles, setAllprofiles] = React.useState([
-  {
-    firstname: "Ali",
-      lastname: "Subur",
-      email: "alimohammedsubur@gmail.com",
-        phone: "0549341667"
-    }
-  ])
-  
-  const updateallprofiles = (profile) => {
-    let arr = allprofiles;
-    arr.push(profile)
-    setAllprofiles([...arr])
-  };
-
-
   return (
-    <>
-    <div className="app">
-  <h1>our profile maker</h1>
-    </div>
-    <ProfileForm submit={updateallprofiles} />
-      <hr />
-      <div className='list'>
-        {allprofiles.map((person, index) => (
-          <ProfileCard key={index} card={person} /> 
-        ))}
-
+    <BrowserRouter>
+      <div>
+        <Header/>
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/contact" element={<ContactScreen />} />
+          <Route path="/about" element={<AboutScreen />} />
+          <Route path="/product" element={<productScreen />} />
+        </Routes>
       </div>
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
